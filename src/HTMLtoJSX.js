@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle, no-plusplus */
 import { JSDOM } from 'jsdom'
-import _ from 'lodash'
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Node.nodeType
 const NODE_TYPE = {
@@ -506,7 +505,7 @@ class HTMLtoJSX {
             (ELEMENT_ATTRIBUTE_MAPPING[tagName] &&
               ELEMENT_ATTRIBUTE_MAPPING[tagName][transformedAttribute.name]) ||
             ATTRIBUTE_MAPPING[transformedAttribute.name] ||
-            _.camelCase(transformedAttribute.name)
+            hyphenToCamelCase(transformedAttribute.name)
         }
 
         // Numeric values should be output as {123} not "123"
