@@ -1,10 +1,7 @@
 import { JSDOM } from 'jsdom'
-import JSXElement from './JSXElement'
-import Traverser from './Traverser'
-import State from './State'
-import Generator from './Generator'
+import { traverse } from './index'
 
-describe('Traverser', () => {
+describe('traverse', () => {
   it('should traverse', () => {
     const { window } = new JSDOM()
     const containerEl = window.document.createElement('div')
@@ -25,20 +22,10 @@ describe('Traverser', () => {
     </svg>
     `
 
-    const visit = (jsxNode, state) => {
-      // if (jsxNode.name === 'svg') {
-      //   const newNode = new JSXElement({ tagName: 'foo' })
-      //   newNode.children = jsxNode.children
-      //   state.replace(newNode)
-      // }
-    }
-
-    const state = new State(new JSXElement(containerEl))
-
-    const traverser = new Traverser(state)
-    traverser.traverse(containerEl)
-
-    const generator = new Generator(state)
-    console.log(generator.generate())
+    traverse(containerEl, {
+      enter(path) {
+        console.log(path )
+      }
+    })
   })
 })

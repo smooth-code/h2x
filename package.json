@@ -9,6 +9,7 @@
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "debug": "^3.0.0",
     "html-to-jsx": "^0.0.4",
     "htmltojsx": "^0.2.6",
     "jsdom": "^11.1.0",
