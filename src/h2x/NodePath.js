@@ -8,19 +8,27 @@ const h2xDebug = debug('h2x')
 class NodePath {
   static get({ parent, container, listKey, key, context }) {
     const node = container[key]
-    return new NodePath({ parentKey: listKey, containerKey: key, parent, container, node, context })
+    return new NodePath({
+      listKey,
+      key,
+      parent,
+      container,
+      node,
+      context,
+    })
   }
 
-  constructor({ container, parent, parentKey, containerKey, node, context }) {
+  constructor({ container, parent, key, listKey, node, context }) {
     this.container = container
     this.parent = parent
-    this.parentKey = parentKey
-    this.containerKey = containerKey
+    this.listKey = listKey
+    this.key = key
     this.node = node
     this.context = context
     this.state = context.state
     this.opts = context.opts
     this.type = getNodeType(node)
+    this.shouldStop = false
   }
 
   debug(value) {
@@ -28,15 +36,13 @@ class NodePath {
   }
 
   visit() {
-    let shouldStop = false
-
-    if (this.call('enter')) shouldStop = true
+    if (this.call('enter')) this.shouldStop = true
 
     traverse(this.node, this.opts, this.state)
 
-    if (this.call('exit')) shouldStop = true
+    if (this.call('exit')) this.shouldStop = true
 
-    return shouldStop
+    return this.shouldStop
   }
 
   call(key) {
@@ -55,6 +61,13 @@ class NodePath {
     return false
   }
 
+  replace(node) {
+    this.shouldStop = true
+    this.node = node
+    this.container[this.key] = node
+    this.context.visit(this.container, this.key)
+  }
+
   _call(fns) {
     if (!fns) return false
     if (!Array.isArray(fns)) fns = [fns]
@@ -65,7 +78,7 @@ class NodePath {
       const node = this.node
       if (!node) return true
 
-      const ret = fn(this)
+      const ret = fn(this, this.state)
       if (ret)
         throw new Error(`Unexpected return value from visitor method ${fn}`)
 

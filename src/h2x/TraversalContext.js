@@ -10,7 +10,8 @@ class TraversalContext {
     const nodes = node[key]
     if (!nodes) return false
 
-    if (typeof nodes.length === 'number') return this.visitMultiple(nodes, node, key)
+    if (typeof nodes.length === 'number')
+      return this.visitMultiple(nodes, node, key)
 
     return this.visitSingle(node, key)
   }

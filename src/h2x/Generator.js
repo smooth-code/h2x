@@ -1,4 +1,6 @@
 /* eslint-disable default-case */
+import { traverse } from './'
+
 const formatAttribute = jsxAttribute => {
   if (jsxAttribute.spread) return `{...${jsxAttribute.name}}`
   if (jsxAttribute.litteral)
@@ -8,7 +10,7 @@ const formatAttribute = jsxAttribute => {
 
 const formatElementOpen = jsxElement => {
   const attributes = jsxElement.attributes.map(formatAttribute).join(' ')
-  const end = jsxElement.isSelfClosing() ? ' />' : '>'
+  const end = jsxElement.children.length === 0 ? ' />' : '>'
   return `<${jsxElement.name}${attributes.length ? ` ${attributes}` : ''}${end}`
 }
 
@@ -20,57 +22,55 @@ const formatComment = jsxComment =>
 const formatText = jsxText => jsxText.text
 
 class Generator {
-  constructor(state) {
-    this.state = state
-    this.level = 0
-    this.output = ''
-  }
-
-  traverse(jsxNode) {
-    jsxNode.children.forEach(child => this.visit(child))
-  }
-
-  visit(jsxNode) {
-    this.beginVisit(jsxNode)
+  enter() {
     this.level += 1
-    this.traverse(jsxNode)
+  }
+
+  exit() {
     this.level -= 1
-    this.endVisit(jsxNode)
-  }
-
-  generate() {
-    this.traverse(this.state.root)
-    return this.output
-  }
-
-  beginVisit(jsxNode) {
-    switch (jsxNode.type) {
-      case 'Element':
-        this.output += `${this.indent()}${formatElementOpen(jsxNode)}\n`
-        break
-      case 'Comment':
-        this.output += `${this.indent()}${formatComment(jsxNode)}\n`
-        break
-      case 'Text': {
-        const trimmedText = jsxNode.text.trim()
-        if (trimmedText)
-          this.output += `${this.indent()}${formatText(jsxNode)}\n`
-        break
-      }
-    }
-  }
-
-  endVisit(jsxNode) {
-    switch (jsxNode.type) {
-      case 'Element':
-        if (!jsxNode.isSelfClosing())
-          this.output += `${this.indent()}${formatElementClose(jsxNode)}\n`
-        break
-    }
   }
 
   indent() {
     return '  '.repeat(this.level)
+  }
+
+  generate(root) {
+    this.output = ''
+    this.level = 0
+
+    traverse(
+      root,
+      {
+        JSXElement: {
+          enter(path, state) {
+            state.output += `${state.indent()}${formatElementOpen(path.node)}\n`
+            state.level += 1
+          },
+          exit(path, state) {
+            state.level -= 1
+            if (path.node.children.length !== 0)
+              state.output += `${state.indent()}${formatElementClose(
+                path.node,
+              )}\n`
+          },
+        },
+        JSXComment: {
+          enter(path, state) {
+            state.output += `${state.indent()}${formatComment(path.node)}\n`
+          },
+        },
+        JSXText: {
+          enter(path, state) {
+            const trimmedText = path.node.text.trim()
+            if (trimmedText)
+              state.output += `${state.indent()}${formatText(path.node)}\n`
+          },
+        },
+      },
+      this,
+    )
+
+    return this.output
   }
 }
 
