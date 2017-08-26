@@ -1,25 +1,7 @@
 {
-  "name": "svgr",
-  "version": "0.0.0",
-  "description": "Convert SVG into React components.",
-  "repository": {
-    "url": "git@github.com:smooth-code/svgr.git",
-    "type": "git"
-  },
-  "author": "Greg Bergé <berge.greg@gmail.com>",
+  "private": true,
   "license": "MIT",
-  "dependencies": {
-    "debug": "^3.0.0",
-    "html-to-jsx": "^0.0.4",
-    "htmltojsx": "^0.2.6",
-    "jsdom": "^11.1.0",
-    "lodash": "^4.17.4",
-    "prettier": "^1.5.3",
-    "react": "next",
-    "react-dom": "next",
-    "svgo": "^0.7.2",
-    "xml2js": "^0.4.18"
-  },
+  "author": "Greg Bergé <berge.greg@gmail.com>",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
@@ -29,6 +11,16 @@
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-config-prettier": "^2.3.0",
     "eslint-plugin-import": "^2.7.0",
-    "jest": "^20.0.4"
+    "jest": "^20.0.4",
+    "lerna": "^2.1.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "jest": {
+    "roots": [
+      "packages"
+    ],
+    "coverageDirectory": "./coverage/"
   }
 }

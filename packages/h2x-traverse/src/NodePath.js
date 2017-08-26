@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax, no-continue, no-underscore-dangle */
 import debug from 'debug'
-import { traverse } from './'
-import { getNodeType } from './types'
+import traverse from './'
+import { getNodeType } from 'h2x-types'
 
 const h2xDebug = debug('h2x')
 

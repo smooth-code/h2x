@@ -1,4 +1,4 @@
-import { NODE_TYPE, VISITOR_KEYS } from '../types'
+import { NODE_TYPE, VISITOR_KEYS } from 'h2x-types'
 
 class JSXText {
   static [NODE_TYPE] = 'JSXText';
