@@ -1,13 +1,13 @@
 {
   "name": "h2x-types",
   "description": "Check types of h2x AST nodes.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "repository": "https://github.com/smooth-code/h2x/tree/master/packages/h2x-types",
   "author": "Bergé Greg <berge.greg@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/smooth-code/h2x",
   "main": "lib/index.js",
   "devDependencies": {
-    "h2x-parse": "0.0.0"
+    "h2x-parse": "^0.1.0"
   }
 }
