@@ -4,7 +4,8 @@ import generate from 'h2x-generate'
 import traverse from 'h2x-traverse'
 
 const reduceVisitors = (visitors, opts) => {
-  Object.entries(visitors).forEach(([key, visitor]) => {
+  Object.keys(visitors).forEach(key => {
+    const visitor = visitors[key]
     if (typeof visitor === 'function') {
       opts[key] = opts[key] || []
       opts[key].push(visitor)
