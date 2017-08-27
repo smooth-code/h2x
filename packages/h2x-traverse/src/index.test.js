@@ -123,7 +123,7 @@ describe('traverse', () => {
     expect(enter.mock.calls[1][0].type).toBe('HTMLElement')
   })
 
-  it('should be possible to remove', () => {
+  it('should be possible to remove elements', () => {
     const enter = jest.fn(path => {
       if (path.node.tagName === 'DIV') {
         path.remove()
@@ -132,18 +132,26 @@ describe('traverse', () => {
 
     const ast = parse(`<header><div></div><span></span></header>`)
 
-    traverse(ast, {
-      enter,
-    })
-
+    traverse(ast, { enter })
     expect(enter).toHaveBeenCalledTimes(3)
-    expect(enter.mock.calls[0][0].type).toBe('HTMLElement')
-    expect(enter.mock.calls[1][0].type).toBe('HTMLElement')
 
-    traverse(ast, {
-      enter,
+    traverse(ast, { enter })
+    expect(enter).toHaveBeenCalledTimes(5)
+  })
+
+  it('should be possible to remove attribute', () => {
+    const enter = jest.fn(path => {
+      if (path.node.name === 'foo') {
+        path.remove()
+      }
     })
 
+    const ast = parse(`<div foo bar x></div>`)
+
+    traverse(ast, { HTMLAttribute: { enter } })
+    expect(enter).toHaveBeenCalledTimes(3)
+
+    traverse(ast, { HTMLAttribute: { enter } })
     expect(enter).toHaveBeenCalledTimes(5)
   })
 })

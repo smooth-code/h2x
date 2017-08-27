@@ -58,8 +58,16 @@ class NodePath {
 
   remove() {
     this.shouldStop = true
+    if (this.type === 'HTMLElement') {
+      this.parent.removeChild(this.node)
+    } else if (this.type === 'HTMLAttribute') {
+      this.parent.removeAttribute(this.node.name)
+    } else if (Array.isArray(this.container)) {
+      this.container.splice(this.key, 1)
+    } else {
+      this.container[this.key] = null
+    }
     this.node = null
-    this.container[this.key] = null
   }
 
   _call(fns) {
