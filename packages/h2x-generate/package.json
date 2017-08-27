@@ -2,7 +2,7 @@
   "name": "h2x-generate",
   "description": "Convert h2x AST into code.",
   "version": "0.0.0",
-  "repository": "https://github.com/smooth-code/h2x/tree/master/packages/h2x-parse",
+  "repository": "https://github.com/smooth-code/h2x/tree/master/packages/h2x-generate",
   "author": "Bergé Greg <berge.greg@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/smooth-code/h2x",

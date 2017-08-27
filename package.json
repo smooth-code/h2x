@@ -4,7 +4,11 @@
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "scripts": {
     "build": "babel-node scripts/build.js",
-    "dev": "yarn run build --silent && babel-node scripts/watch.js"
+    "ci": "yarn build && yarn lint && yarn test",
+    "dev": "yarn build --silent && babel-node scripts/watch.js",
+    "format": "prettier --write --no-semi --single-quote --trailing-comma all \"packages/*/src/**/*.js\"",
+    "lint": "eslint --cache .",
+    "test": "jest --runInBand --coverage && codecov"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -14,6 +18,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "chalk": "^2.1.0",
+    "codecov": "^2.3.0",
     "eslint": "^4.4.1",
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-config-prettier": "^2.3.0",
