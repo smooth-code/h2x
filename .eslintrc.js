@@ -12,6 +12,7 @@ module.exports = {
   rules: {
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
+    'no-use-before-define': 'off',
     'import/prefer-default-export': 'off',
   },
 }

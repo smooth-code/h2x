@@ -2,7 +2,7 @@ import { VISITOR_KEYS } from './symbols'
 
 const getHTMLVisitorKeys = node => {
   if (node.constructor.name === 'Attr') return null
-  return ['children', 'attributes']
+  return ['childNodes', 'attributes']
 }
 
 function getNodeVisitorKeys(node) {

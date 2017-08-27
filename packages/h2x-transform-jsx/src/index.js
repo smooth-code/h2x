@@ -1,7 +1,7 @@
-import JSXElement from '../jsxNodes/JSXElement'
-import JSXAttribute from '../jsxNodes/JSXAttribute'
-import JSXComment from '../jsxNodes/JSXComment'
-import JSXText from '../jsxNodes/JSXText'
+import JSXElement from './JSXElement'
+import JSXAttribute from './JSXAttribute'
+import JSXComment from './JSXComment'
+import JSXText from './JSXText'
 
 const ATTRIBUTE_MAPPING = {
   for: 'htmlFor',
@@ -60,14 +60,14 @@ function listToArray(list) {
   return array
 }
 
-export default () => ({
+const transformJsx = () => ({
   visitor: {
     HTMLElement: {
       enter(path) {
         const jsxElement = new JSXElement()
         jsxElement.name = path.node.tagName.toLowerCase()
         jsxElement.attributes = listToArray(path.node.attributes)
-        jsxElement.children = listToArray(path.node.children)
+        jsxElement.children = listToArray(path.node.childNodes)
         path.replace(jsxElement)
       },
     },
@@ -96,3 +96,6 @@ export default () => ({
     },
   },
 })
+
+export default transformJsx
+export { JSXElement, JSXAttribute, JSXComment, JSXText }

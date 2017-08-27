@@ -2,17 +2,27 @@
   "private": true,
   "license": "MIT",
   "author": "Greg Bergé <berge.greg@gmail.com>",
+  "scripts": {
+    "build": "babel-node scripts/build.js",
+    "dev": "yarn run build --silent && babel-node scripts/watch.js"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.0",
+    "chalk": "^2.1.0",
     "eslint": "^4.4.1",
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-config-prettier": "^2.3.0",
     "eslint-plugin-import": "^2.7.0",
+    "glob": "^7.1.2",
     "jest": "^20.0.4",
-    "lerna": "^2.1.0"
+    "lerna": "^2.1.0",
+    "micromatch": "^3.0.4",
+    "mkdirp": "^0.5.1",
+    "string-length": "^2.0.0"
   },
   "workspaces": [
     "packages/*"

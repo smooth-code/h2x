@@ -1,9 +1,6 @@
 /* eslint-disable no-restricted-syntax, no-continue, no-underscore-dangle */
-import debug from 'debug'
-import traverse from './'
 import { getNodeType } from 'h2x-types'
-
-const h2xDebug = debug('h2x')
+import traverse from './'
 
 class NodePath {
   static get({ parent, container, listKey, key, context }) {
@@ -31,10 +28,6 @@ class NodePath {
     this.shouldStop = false
   }
 
-  debug(value) {
-    h2xDebug(value)
-  }
-
   visit() {
     if (this.call('enter')) this.shouldStop = true
 
@@ -48,13 +41,8 @@ class NodePath {
   call(key) {
     const opts = this.opts
 
-    this.debug(key)
-
     if (this.node) {
       if (this._call(opts[key])) return true
-    }
-
-    if (this.node) {
       return this._call(opts[this.type] && opts[this.type][key])
     }
 
@@ -75,8 +63,8 @@ class NodePath {
     for (const fn of fns) {
       if (!fn) continue
 
+      // Node has been removed, it will have been requeued
       const node = this.node
-      if (!node) return true
 
       const ret = fn(this, this.state)
       if (ret)

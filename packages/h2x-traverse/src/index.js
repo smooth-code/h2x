@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-syntax */
-import { getVisitorKeys } from 'h2x-types'
+import { getNodeVisitorKeys } from 'h2x-types'
 import TraversalContext from './TraversalContext'
 
 function traverse(ast, opts = {}, state = {}) {
-  const keys = getVisitorKeys(ast)
+  const keys = getNodeVisitorKeys(ast)
   if (!keys) return
 
   const context = new TraversalContext({ opts, state })

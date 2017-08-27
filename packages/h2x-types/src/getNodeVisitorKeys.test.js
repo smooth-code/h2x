@@ -15,7 +15,7 @@ describe('getNodeVisitorKeys', () => {
     const ast = parse(`
       <div id="foo"></div>
     `)
-    expect(getNodeVisitorKeys(ast)).toEqual(['children', 'attributes'])
+    expect(getNodeVisitorKeys(ast)).toEqual(['childNodes', 'attributes'])
     expect(getNodeVisitorKeys(ast.children[0].attributes[0])).toBe(null)
   })
 })
