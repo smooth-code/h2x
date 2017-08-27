@@ -1,6 +1,6 @@
 {
-  "name": "h2x-parse",
-  "description": "Convert HTML code into h2x AST.",
+  "name": "h2x-generator",
+  "description": "Convert h2x AST into code.",
   "version": "0.0.0",
   "repository": "https://github.com/smooth-code/h2x/tree/master/packages/h2x-parse",
   "author": "Bergé Greg <berge.greg@gmail.com>",
@@ -8,6 +8,9 @@
   "homepage": "https://github.com/smooth-code/h2x",
   "main": "lib/index.js",
   "dependencies": {
-    "jsdom": "11.1.0"
+    "h2x-traverse": "0.0.0"
+  },
+  "devDependencies": {
+    "h2x-parse": "0.0.0"
   }
 }
