@@ -19,10 +19,12 @@ class TraversalContext {
   visitMultiple(container, parent, listKey) {
     if (container.length === 0) return false
     let shouldStop = false
-    for (let key = 0; key < container.length; key += 1) {
+
+    Array.from(container).forEach((value, key) => {
+      if (!value) return
       const nodePath = this.create(parent, container, key, listKey)
       if (nodePath && nodePath.visit()) shouldStop = true
-    }
+    })
 
     return shouldStop
   }

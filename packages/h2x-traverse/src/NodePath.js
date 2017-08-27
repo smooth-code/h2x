@@ -56,6 +56,12 @@ class NodePath {
     this.context.visit(this.container, this.key)
   }
 
+  remove() {
+    this.shouldStop = true
+    this.node = null
+    this.container[this.key] = null
+  }
+
   _call(fns) {
     if (!fns) return false
     if (!Array.isArray(fns)) fns = [fns]
@@ -63,8 +69,8 @@ class NodePath {
     for (const fn of fns) {
       if (!fn) continue
 
-      // Node has been removed, it will have been requeued
       const node = this.node
+      if (!node) return true
 
       const ret = fn(this, this.state)
       if (ret)

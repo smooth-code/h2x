@@ -3,6 +3,7 @@ import { getNodeVisitorKeys } from 'h2x-types'
 import TraversalContext from './TraversalContext'
 
 function traverse(ast, opts = {}, state = {}) {
+  if (!ast) return
   const keys = getNodeVisitorKeys(ast)
   if (!keys) return
 
