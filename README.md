@@ -1,5 +1,8 @@
 # h2x
 
+[![Build Status](https://travis-ci.org/smooth-code/h2x.svg?branch=master)](https://travis-ci.org/smooth-code/h2x)
+[![codecov](https://codecov.io/gh/smooth-code/h2x/branch/master/graph/badge.svg)](https://codecov.io/gh/smooth-code/h2x)
+
 **H2X** is a compiler to configurable compiler to transform HTML into JSX or another language.
 
 It is inspired by babel and configurable using plugins.
