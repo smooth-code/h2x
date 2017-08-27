@@ -60,42 +60,37 @@ function listToArray(list) {
   return array
 }
 
-const transformJsx = () => ({
-  visitor: {
-    HTMLElement: {
-      enter(path) {
-        const jsxElement = new JSXElement()
-        jsxElement.name = path.node.tagName.toLowerCase()
-        jsxElement.attributes = listToArray(path.node.attributes)
-        jsxElement.children = listToArray(path.node.childNodes)
-        path.replace(jsxElement)
-      },
-    },
-    HTMLAttribute: {
-      enter(path) {
-        const jsxAttribute = new JSXAttribute()
-        jsxAttribute.name = getAttributeName(path.node, path.parent)
-        jsxAttribute.value = getAttributeValue(path.node)
-        jsxAttribute.litteral = isNumeric(jsxAttribute.value)
-        path.replace(jsxAttribute)
-      },
-    },
-    HTMLComment: {
-      enter(path) {
-        const jsxComment = new JSXComment()
-        jsxComment.text = path.node.textContent.trim()
-        path.replace(jsxComment)
-      },
-    },
-    HTMLText: {
-      enter(path) {
-        const jsxText = new JSXText()
-        jsxText.text = path.node.textContent.trim()
-        path.replace(jsxText)
-      },
+export default {
+  HTMLElement: {
+    enter(path) {
+      const jsxElement = new JSXElement()
+      jsxElement.name = path.node.tagName.toLowerCase()
+      jsxElement.attributes = listToArray(path.node.attributes)
+      jsxElement.children = listToArray(path.node.childNodes)
+      path.replace(jsxElement)
     },
   },
-})
-
-export default transformJsx
-export { JSXElement, JSXAttribute, JSXComment, JSXText }
+  HTMLAttribute: {
+    enter(path) {
+      const jsxAttribute = new JSXAttribute()
+      jsxAttribute.name = getAttributeName(path.node, path.parent)
+      jsxAttribute.value = getAttributeValue(path.node)
+      jsxAttribute.litteral = isNumeric(jsxAttribute.value)
+      path.replace(jsxAttribute)
+    },
+  },
+  HTMLComment: {
+    enter(path) {
+      const jsxComment = new JSXComment()
+      jsxComment.text = path.node.textContent.trim()
+      path.replace(jsxComment)
+    },
+  },
+  HTMLText: {
+    enter(path) {
+      const jsxText = new JSXText()
+      jsxText.text = path.node.textContent.trim()
+      path.replace(jsxText)
+    },
+  },
+}
