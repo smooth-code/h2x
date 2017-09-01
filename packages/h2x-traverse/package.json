@@ -1,7 +1,7 @@
 {
   "name": "h2x-traverse",
   "description": "Traverse and modify h2x AST.",
-  "version": "0.1.3",
+  "version": "0.1.6",
   "repository": "https://github.com/smooth-code/h2x/tree/master/packages/h2x-traverse",
   "author": "Bergé Greg <berge.greg@gmail.com>",
   "license": "MIT",
