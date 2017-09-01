@@ -34,14 +34,13 @@ function hyphenToCamelCase(string) {
 function getAttributeName(attribute, node) {
   if (
     !attribute.name.startsWith('aria-') &&
-    !attribute.name.startsWith('data-') &&
-    !attribute.name.includes(':')
+    !attribute.name.startsWith('data-')
   ) {
     return (
       (ELEMENT_ATTRIBUTE_MAPPING[node.name] &&
         ELEMENT_ATTRIBUTE_MAPPING[node.name][attribute.name]) ||
       ATTRIBUTE_MAPPING[attribute.name] ||
-      hyphenToCamelCase(attribute.name)
+      hyphenToCamelCase(attribute.name.replace(':', '-'))
     )
   }
 

@@ -21,7 +21,7 @@ describe('transformJsx', () => {
 
     expect(transform(code, { plugins: [transformJsx] }).trim())
       .toBe(`{/*?xml version="1.0" encoding="UTF-8"?*/}
-<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
   {/*Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch*/}
   <title>
     Dismiss
