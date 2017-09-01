@@ -20,14 +20,9 @@ class TraversalContext {
     if (container.length === 0) return false
     let shouldStop = false
 
-    const paths = []
-
     Array.from(container).forEach((value, key) => {
+      if (shouldStop) return
       const nodePath = this.create(parent, container, key, listKey)
-      paths.push(nodePath)
-    })
-
-    paths.forEach(nodePath => {
       if (nodePath && nodePath.visit()) shouldStop = true
     })
 

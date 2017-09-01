@@ -112,6 +112,9 @@ describe('traverse', () => {
       if (path.node.tagName === 'DIV') {
         path.replace(path.node.ownerDocument.createElement('header'))
       }
+
+      // Bug with visiting container instead of parent
+      expect(path.container !== path.parent).toBe(true)
     })
     const ast = parse(`<div foo bar></div>`)
     traverse(ast, {
@@ -130,13 +133,13 @@ describe('traverse', () => {
       }
     })
 
-    const ast = parse(`<header><div></div><span></span></header>`)
+    const ast = parse(`<header><div></div><span></span><span></span></header>`)
 
     traverse(ast, { enter })
-    expect(enter).toHaveBeenCalledTimes(3)
+    expect(enter).toHaveBeenCalledTimes(4)
 
     traverse(ast, { enter })
-    expect(enter).toHaveBeenCalledTimes(5)
+    expect(enter).toHaveBeenCalledTimes(7)
   })
 
   it('should be possible to remove attribute', () => {

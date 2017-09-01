@@ -53,7 +53,7 @@ class NodePath {
     this.shouldStop = true
     this.node = node
     this.container[this.key] = node
-    this.context.visit(this.container, this.key)
+    this.requeue()
   }
 
   remove() {
@@ -68,6 +68,11 @@ class NodePath {
       this.container[this.key] = null
     }
     this.node = null
+    this.requeue()
+  }
+
+  requeue() {
+    this.context.visit(this.parent, this.listKey)
   }
 
   _call(fns) {
