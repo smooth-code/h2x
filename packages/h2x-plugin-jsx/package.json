@@ -1,7 +1,7 @@
 {
   "name": "h2x-plugin-jsx",
   "description": "Transform HTML into JSX.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "repository": "https://github.com/smooth-code/h2x/tree/master/packages/h2x-plugin-jsx",
   "author": "Bergé Greg <berge.greg@gmail.com>",
   "license": "MIT",
@@ -11,6 +11,6 @@
     "h2x-types": "^0.1.0"
   },
   "devDependencies": {
-    "h2x-core": "^0.1.3"
+    "h2x-core": "^0.1.4"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "h2x-core",
   "description": "H2X compiler core.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "repository": "https://github.com/smooth-code/h2x/tree/master/packages/h2x-core",
   "author": "Bergé Greg <berge.greg@gmail.com>",
   "license": "MIT",
