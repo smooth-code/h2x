@@ -3,6 +3,7 @@
   "license": "MIT",
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "scripts": {
+    "prepublish": "yarn build",
     "build": "babel-node scripts/build.js",
     "ci": "yarn build && yarn lint && yarn test",
     "dev": "yarn build --silent && babel-node scripts/watch.js",
