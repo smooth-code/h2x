@@ -5,6 +5,7 @@ import traverse from './'
 class NodePath {
   static get({ parent, container, listKey, key, context }) {
     const node = container[key]
+    if (!node) return null
     return new NodePath({
       listKey,
       key,
@@ -47,6 +48,13 @@ class NodePath {
     }
 
     return false
+  }
+
+  resyncKey() {
+    if (!this.container) return
+    for (let i = 0; i < this.container.length; i += 1) {
+      if (this.container[i] === this.node) this.key = i
+    }
   }
 
   replace(node) {

@@ -143,18 +143,27 @@ describe('traverse', () => {
   })
 
   it('should be possible to remove attribute', () => {
+    let replaced = false
+
     const enter = jest.fn(path => {
-      if (path.node.name === 'foo') {
+      if (path.node.name === 'bar') {
         path.remove()
+        // replace with remove should work
+        if (replaced) path.replace(path.node)
+      }
+
+      if (!replaced) {
+        replaced = true
+        path.replace(path.node)
       }
     })
 
     const ast = parse(`<div foo bar x></div>`)
 
     traverse(ast, { HTMLAttribute: { enter } })
-    expect(enter).toHaveBeenCalledTimes(3)
+    expect(enter).toHaveBeenCalledTimes(6)
 
     traverse(ast, { HTMLAttribute: { enter } })
-    expect(enter).toHaveBeenCalledTimes(5)
+    expect(enter).toHaveBeenCalledTimes(7)
   })
 })
