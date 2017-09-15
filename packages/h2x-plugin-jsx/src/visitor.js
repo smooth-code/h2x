@@ -19,6 +19,104 @@ const ELEMENT_ATTRIBUTE_MAPPING = {
   },
 }
 
+// Reference: https://developer.mozilla.org/en-US/docs/Web/SVG/Element#SVG_elements
+const ELEMENT_TAG_NAME_MAPPING = {
+  a: 'a',
+  altglyph: 'altGlyph',
+  altglyphdef: 'altGlyphDef',
+  altglyphitem: 'altGlyphItem',
+  animate: 'animate',
+  animatecolor: 'animateColor',
+  animatemotion: 'animateMotion',
+  animatetransform: 'animateTransform',
+  audio: 'audio',
+  canvas: 'canvas',
+  circle: 'circle',
+  clippath: 'clipPath',
+  'color-profile': 'colorProfile',
+  cursor: 'cursor',
+  defs: 'defs',
+  desc: 'desc',
+  discard: 'discard',
+  ellipse: 'ellipse',
+  feblend: 'feBlend',
+  fecolormatrix: 'feColorMatrix',
+  fecomponenttransfer: 'feComponentTransfer',
+  fecomposite: 'feComposite',
+  feconvolvematrix: 'feConvolveMatrix',
+  fediffuselighting: 'feDiffuseLighting',
+  fedisplacementmap: 'feDisplacementMap',
+  fedistantlight: 'feDistantLight',
+  fedropshadow: 'feDropShadow',
+  feflood: 'feFlood',
+  fefunca: 'feFuncA',
+  fefuncb: 'feFuncB',
+  fefuncg: 'feFuncG',
+  fefuncr: 'feFuncR',
+  fegaussianblur: 'feGaussianBlur',
+  feimage: 'feImage',
+  femerge: 'feMerge',
+  femergenode: 'feMergeNode',
+  femorphology: 'feMorphology',
+  feoffset: 'feOffset',
+  fepointlight: 'fePointLight',
+  fespecularlighting: 'feSpecularLighting',
+  fespotlight: 'feSpotLight',
+  fetile: 'feTile',
+  feturbulence: 'feTurbulence',
+  filter: 'filter',
+  font: 'font',
+  'font-face': 'fontFace',
+  'font-face-format': 'fontFaceFormat',
+  'font-face-name': 'fontFaceName',
+  'font-face-src': 'fontFaceSrc',
+  'font-face-uri': 'fontFaceUri',
+  foreignobject: 'foreignObject',
+  g: 'g',
+  glyph: 'glyph',
+  glyphref: 'glyphRef',
+  hatch: 'hatch',
+  hatchpath: 'hatchpath',
+  hkern: 'hkern',
+  iframe: 'iframe',
+  image: 'image',
+  line: 'line',
+  lineargradient: 'linearGradient',
+  marker: 'marker',
+  mask: 'mask',
+  mesh: 'mesh',
+  meshgradient: 'meshgradient',
+  meshpatch: 'meshpatch',
+  meshrow: 'meshrow',
+  metadata: 'metadata',
+  'missing-glyph': 'missingGlyph',
+  mpath: 'mpath',
+  path: 'path',
+  pattern: 'pattern',
+  polygon: 'polygon',
+  polyline: 'polyline',
+  radialgradient: 'radialGradient',
+  rect: 'rect',
+  script: 'script',
+  set: 'set',
+  solidcolor: 'solidcolor',
+  stop: 'stop',
+  style: 'style',
+  svg: 'svg',
+  switch: 'switch',
+  symbol: 'symbol',
+  text: 'text',
+  textpath: 'textPath',
+  title: 'title',
+  tref: 'tref',
+  tspan: 'tspan',
+  unknown: 'unknown',
+  use: 'use',
+  video: 'video',
+  view: 'view',
+  vkern: 'vkern'
+};
+
 function isNumeric(input) {
   return (
     input !== undefined &&
@@ -47,6 +145,11 @@ function getAttributeName(attribute, node) {
   return attribute.name
 }
 
+function transformTagName(tagName) {
+  const lowercaseTagName = tagName.toLowerCase();
+  return ELEMENT_TAG_NAME_MAPPING[lowercaseTagName] || lowercaseTagName;
+}
+
 function getAttributeValue(attribute) {
   return attribute.value
 }
@@ -63,7 +166,8 @@ export default {
   HTMLElement: {
     enter(path) {
       const jsxElement = new JSXElement()
-      jsxElement.name = path.node.tagName.toLowerCase()
+
+      jsxElement.name = transformTagName(path.node.tagName)
       jsxElement.attributes = listToArray(path.node.attributes)
       jsxElement.children = listToArray(path.node.childNodes)
       path.replace(jsxElement)
