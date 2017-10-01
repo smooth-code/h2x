@@ -5,9 +5,9 @@
   "scripts": {
     "publish": "lerna publish",
     "prepublish": "yarn build",
-    "build": "babel-node scripts/build.js",
+    "build": "lerna-build",
     "ci": "yarn build && yarn lint && yarn test",
-    "dev": "yarn build --silent && babel-node scripts/watch.js",
+    "dev": "yarn build && lerna-watch",
     "format": "prettier --write --no-semi --single-quote --trailing-comma all \"packages/*/src/**/*.js\"",
     "lint": "eslint --cache .",
     "test": "jest --runInBand --coverage && codecov"
@@ -28,6 +28,7 @@
     "glob": "^7.1.2",
     "jest": "^20.0.4",
     "lerna": "^2.1.0",
+    "lerna-tools": "^0.0.2",
     "micromatch": "^3.0.4",
     "mkdirp": "^0.5.1",
     "string-length": "^2.0.0"
