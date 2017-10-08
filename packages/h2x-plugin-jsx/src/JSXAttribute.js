@@ -6,7 +6,7 @@ class JSXAttribute {
 
   name = null
   value = null
-  litteral = false
+  literal = false
   spread = false
 }
 
