@@ -55,7 +55,7 @@ describe('transformJsx', () => {
 
     expect(transform(code, { plugins: [transformJsx] }).trim())
       .toBe(`{/*?xml version="1.0" encoding="UTF-8"?*/}
-<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+<svg width="88px" height="88px" viewBox="0 0 88 88" version={1.1} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
   {/*Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch*/}
   <title>
     Dismiss
@@ -70,7 +70,7 @@ describe('transformJsx', () => {
     </linearGradient>
     <filter id="b" width="157.1%" height="180%" x="-28.6%" y="-20%" filterUnits="objectBoundingBox">
       <feOffset dy={1} in="SourceAlpha" result="shadowOffsetOuter1" />
-      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation=".5" />
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation={.5} />
       <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" />
     </filter>
   </defs>
@@ -78,10 +78,17 @@ describe('transformJsx', () => {
     <g id="Dismiss" stroke="#063855" strokeWidth={2}>
       <path d="M51,37 L37,51" id="Shape" />
       <path d="M51,51 L37,37" id="Shape" />
-      <circle cx="43.5" cy="42.5" r="31.5" fill="url(#a)" opacity=".1" />
-      <circle fill="#f00" cx="43.5" cy="42.5" r="21.5" filter="url(#b)" opacity={1} />
+      <circle cx={43.5} cy={42.5} r={31.5} fill="url(#a)" opacity={.1} />
+      <circle fill="#f00" cx={43.5} cy={42.5} r={21.5} filter="url(#b)" opacity={1} />
     </g>
   </g>
 </svg>`)
+  })
+
+  it('should handle convert style attribute to object', () => {
+    const code = `<div id="foo" style="font-size: 10px; line-height: 1.2;"></div>`
+    expect(transform(code, { plugins: [transformJsx] }).trim()).toBe(
+      `<div id="foo" style={{"fontSize":10,"lineHeight":1.2}} />`,
+    )
   })
 })
