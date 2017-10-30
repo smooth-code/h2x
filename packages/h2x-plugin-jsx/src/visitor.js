@@ -2,6 +2,7 @@ import JSXElement from './JSXElement'
 import JSXAttribute from './JSXAttribute'
 import JSXComment from './JSXComment'
 import JSXText from './JSXText'
+import { isNumeric, hyphenToCamelCase } from './util'
 
 const ATTRIBUTE_MAPPING = {
   for: 'htmlFor',
@@ -114,19 +115,7 @@ const ELEMENT_TAG_NAME_MAPPING = {
   use: 'use',
   video: 'video',
   view: 'view',
-  vkern: 'vkern'
-};
-
-function isNumeric(input) {
-  return (
-    input !== undefined &&
-    input !== null &&
-    (typeof input === 'number' || parseInt(input, 10) == input) // eslint-disable-line eqeqeq
-  )
-}
-
-function hyphenToCamelCase(string) {
-  return string.replace(/-(.)/g, (match, chr) => chr.toUpperCase())
+  vkern: 'vkern',
 }
 
 function getAttributeName(attribute, node) {
@@ -146,8 +135,8 @@ function getAttributeName(attribute, node) {
 }
 
 function transformTagName(tagName) {
-  const lowercaseTagName = tagName.toLowerCase();
-  return ELEMENT_TAG_NAME_MAPPING[lowercaseTagName] || lowercaseTagName;
+  const lowercaseTagName = tagName.toLowerCase()
+  return ELEMENT_TAG_NAME_MAPPING[lowercaseTagName] || lowercaseTagName
 }
 
 function getAttributeValue(attribute) {
