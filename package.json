@@ -4,7 +4,7 @@
   "author": "Greg Bergé <berge.greg@gmail.com>",
   "scripts": {
     "publish": "lerna publish",
-    "prepublish": "yarn build",
+    "prepublishOnly": "yarn build",
     "build": "lerna-build",
     "ci": "yarn build && yarn lint && yarn test",
     "dev": "yarn build && lerna-watch",
