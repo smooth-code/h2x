@@ -40,7 +40,7 @@ class NodePath {
   }
 
   call(key) {
-    const opts = this.opts
+    const { opts } = this
 
     if (this.node) {
       if (this._call(opts[key])) return true
@@ -90,7 +90,7 @@ class NodePath {
     for (const fn of fns) {
       if (!fn) continue
 
-      const node = this.node
+      const { node } = this
       if (!node) return true
 
       const ret = fn(this, this.state)

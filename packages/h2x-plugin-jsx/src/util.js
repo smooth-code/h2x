@@ -5,7 +5,7 @@
  * @returns {boolean}
  */
 export function isNumeric(value) {
-  return !isNaN(value - parseFloat(value))
+  return !Number.isNaN(value - parseFloat(value))
 }
 
 /**
