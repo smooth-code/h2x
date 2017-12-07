@@ -3,7 +3,6 @@ import parse from 'h2x-parse'
 import generate from 'h2x-generate'
 import traverse from 'h2x-traverse'
 
-
 const reduceVisitors = (visitors, opts) => {
   Object.keys(visitors).forEach(key => {
     const visitor = visitors[key]
@@ -31,9 +30,9 @@ const mergePlugins = plugins =>
 
 export { traverse, generate }
 
-export function transform(code, { plugins = [] } = {}) {
+export function transform(code, { plugins = [], state = {} } = {}) {
   const ast = parse(code)
   const { visitor, generator } = mergePlugins(plugins)
-  traverse(ast, visitor)
+  traverse(ast, visitor, state)
   return generate(ast, generator)
 }
