@@ -1,4 +1,5 @@
 import parse from 'h2x-parse'
+import { fromHtmlElement } from 'h2x-types'
 import traverse from './'
 
 describe('traverse', () => {
@@ -110,7 +111,9 @@ describe('traverse', () => {
   it('should be possible to replace', () => {
     const enter = jest.fn(path => {
       if (path.node.tagName === 'DIV') {
-        path.replace(path.node.ownerDocument.createElement('header'))
+        path.replace(
+          fromHtmlElement(path.node.ownerDocument.createElement('header')),
+        )
       }
 
       // Bug with visiting container instead of parent

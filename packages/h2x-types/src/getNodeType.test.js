@@ -16,6 +16,6 @@ describe('getNodeType', () => {
       <div id="foo"></div>
     `)
     expect(getNodeType(ast)).toBe('HTMLElement')
-    expect(getNodeType(ast.children[0].attributes[0])).toBe('HTMLAttribute')
+    expect(getNodeType(ast.childNodes[1].attributes[0])).toBe('HTMLAttribute')
   })
 })

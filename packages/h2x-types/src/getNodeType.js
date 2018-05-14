@@ -2,12 +2,15 @@ import * as HTMLNodeTypes from './HTMLNodeTypes'
 import { NODE_TYPE } from './symbols'
 
 const getHTMLNodeType = node => {
-  if (node.constructor.name === 'Attr') return 'HTMLAttribute'
+  const { originalNode } = node
+  if (!originalNode) return null
+  if (originalNode.constructor.name === 'Attr') return 'HTMLAttribute'
 
-  switch (node.nodeType) {
+  switch (originalNode.nodeType) {
     case HTMLNodeTypes.TEXT_NODE:
       return 'HTMLText'
     case HTMLNodeTypes.ELEMENT_NODE:
+    case HTMLNodeTypes.FRAGMENT_NODE:
       return 'HTMLElement'
     case HTMLNodeTypes.COMMENT_NODE:
       return 'HTMLComment'
