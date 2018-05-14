@@ -1,11 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 import { JSDOM } from 'jsdom'
+import { fromHtmlElement } from 'h2x-types'
 
 function parse(code) {
-  const { window } = new JSDOM()
-  const container = window.document.createElement('div')
-  container.innerHTML = code
-  return container
+  return fromHtmlElement(JSDOM.fragment(code))
 }
 
 export default parse
