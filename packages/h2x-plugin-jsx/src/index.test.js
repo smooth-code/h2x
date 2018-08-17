@@ -1,5 +1,5 @@
 import { transform } from 'h2x-core'
-import transformJsx from './'
+import transformJsx from '.'
 
 describe('transformJsx', () => {
   it('should transform into jsx', () => {

@@ -1,5 +1,5 @@
 import parse from 'h2x-parse'
-import { getNodeType, NODE_TYPE } from './'
+import { getNodeType, NODE_TYPE } from '.'
 
 describe('getNodeType', () => {
   it('should use constructor.NODE_TYPE if available', () => {

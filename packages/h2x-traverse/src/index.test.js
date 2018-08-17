@@ -1,6 +1,6 @@
 import parse from 'h2x-parse'
 import { fromHtmlElement } from 'h2x-types'
-import traverse from './'
+import traverse from '.'
 
 describe('traverse', () => {
   it('should call enter and exit', () => {
