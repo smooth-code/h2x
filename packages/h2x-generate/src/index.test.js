@@ -1,5 +1,5 @@
 import parse from 'h2x-parse'
-import generate from './'
+import generate from '.'
 
 describe('generate', () => {
   it('should generate code from AST', () => {

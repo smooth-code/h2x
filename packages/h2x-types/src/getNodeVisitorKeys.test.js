@@ -1,5 +1,5 @@
 import parse from 'h2x-parse'
-import { getNodeVisitorKeys, VISITOR_KEYS } from './'
+import { getNodeVisitorKeys, VISITOR_KEYS } from '.'
 
 describe('getNodeVisitorKeys', () => {
   it('should use constructor.VISITOR_KEYS if available', () => {

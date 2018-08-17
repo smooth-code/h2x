@@ -7,6 +7,11 @@
   "license": "MIT",
   "homepage": "https://github.com/smooth-code/h2x",
   "main": "lib/index.js",
+  "scripts": {
+    "prebuild": "rm -rf lib/",
+    "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
+    "prepublishOnly": "yarn run build"
+  },
   "dependencies": {
     "h2x-traverse": "^1.0.0"
   },

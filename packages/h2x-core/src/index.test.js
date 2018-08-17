@@ -1,5 +1,5 @@
 import { NODE_TYPE } from 'h2x-types'
-import { transform } from './'
+import { transform } from '.'
 
 describe('transform', () => {
   it('should transform', () => {

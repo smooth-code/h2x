@@ -1,4 +1,4 @@
-import parse from './'
+import parse from '.'
 
 describe('parse', () => {
   it('should parse HTML code and return a wrapped node', () => {

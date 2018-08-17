@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax, no-continue, no-underscore-dangle */
 import { getNodeType } from 'h2x-types'
-import traverse from './'
+import traverse from '.'
 
 class NodePath {
   static get({ parent, container, listKey, key, context }) {
