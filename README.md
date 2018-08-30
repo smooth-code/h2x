@@ -19,7 +19,7 @@ console.log(result) // <div className="foo" />
 
 ## Why
 
-Transforming HTML into JSX is not simple. It's a compilated operation which requires a compiler to do properly.
+Transforming HTML into JSX is not simple. It's a complicated operation which requires a compiler to do properly.
 
 Extending it with plugins will give us the ability to create awesome utilities.
 
