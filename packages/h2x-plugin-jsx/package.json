@@ -14,8 +14,5 @@
   },
   "dependencies": {
     "h2x-types": "^1.0.0"
-  },
-  "devDependencies": {
-    "h2x-core": "^1.0.0"
   }
 }

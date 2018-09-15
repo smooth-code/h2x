@@ -11,8 +11,5 @@
     "prebuild": "rm -rf lib/",
     "build": "babel --config-file ../../babel.config.js -d lib --ignore \"**/*.test.js\" src",
     "prepublishOnly": "yarn run build"
-  },
-  "devDependencies": {
-    "h2x-parse": "^1.0.0"
   }
 }
