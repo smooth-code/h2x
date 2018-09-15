@@ -2,7 +2,7 @@ import stringToObjectStyle from './stringToObjectStyle'
 
 const formatAttribute = jsxAttribute => {
   if (jsxAttribute.spread) return `{...${jsxAttribute.name}}`
-  if (jsxAttribute.litteral)
+  if (jsxAttribute.literal)
     return `${jsxAttribute.name}={${jsxAttribute.value}}`
   if (jsxAttribute.name === 'style')
     return `${jsxAttribute.name}={${JSON.stringify(

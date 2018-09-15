@@ -167,7 +167,7 @@ export default {
       const jsxAttribute = new JSXAttribute()
       jsxAttribute.name = getAttributeName(path.node, path.parent)
       jsxAttribute.value = getAttributeValue(path.node)
-      jsxAttribute.litteral = isNumeric(jsxAttribute.value)
+      jsxAttribute.literal = isNumeric(jsxAttribute.value)
       path.replace(jsxAttribute)
     },
   },
