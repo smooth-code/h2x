@@ -1,5 +1,5 @@
 import { transform } from 'h2x-core'
-import transformJsx from '.'
+import transformJsx, { JSXInterpolation } from '.'
 
 describe('transformJsx', () => {
   it('should transform into jsx', () => {
@@ -107,5 +107,25 @@ describe('transformJsx', () => {
     expect(transform(code, { plugins: [transformJsx] }).trim()).toBe(
       '<svg autoReverse="false" externalResourcesRequired="true" focusable="true" preserveAlpha="false" />',
     )
+  })
+
+  it('should handle interpolation', () => {
+    const code = `<div></div>`
+    const addInterpolation = () => ({
+      visitor: {
+        JSXElement: {
+          enter(path) {
+            const interpolation = new JSXInterpolation()
+            interpolation.value = 'title'
+            path.node.children.push(interpolation)
+          },
+        },
+      },
+    })
+    expect(
+      transform(code, { plugins: [transformJsx, addInterpolation] }).trim(),
+    ).toBe(`<div>
+  {title}
+</div>`)
   })
 })

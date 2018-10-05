@@ -47,4 +47,9 @@ export default {
       if (trimmedText) generator.writeLine(`{\`${formatText(path.node)}\`}`)
     },
   },
+  JSXInterpolation: {
+    enter(path, generator) {
+      generator.writeLine(`{${path.node.value}}`)
+    },
+  },
 }
