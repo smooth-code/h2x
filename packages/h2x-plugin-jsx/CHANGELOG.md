@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/smooth-code/h2x/tree/master/packages/h2x-plugin-jsx/compare/v1.1.0...v1.1.1) (2018-10-05)
+
+
+### Bug Fixes
+
+* handle special SVG attributes ([efc529c](https://github.com/smooth-code/h2x/tree/master/packages/h2x-plugin-jsx/commit/efc529c))
+* handle style attribute ([b1c70ae](https://github.com/smooth-code/h2x/tree/master/packages/h2x-plugin-jsx/commit/b1c70ae))
+
+
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/smooth-code/h2x/tree/master/packages/h2x-plugin-jsx/compare/v1.0.0...v1.1.0) (2018-09-15)
 
