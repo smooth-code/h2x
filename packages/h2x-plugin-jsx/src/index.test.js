@@ -101,4 +101,11 @@ describe('transformJsx', () => {
       `<div id="foo" style={{"fontSize":10,"lineHeight":1.2}} />`,
     )
   })
+
+  it('should handle special SVG attributes', () => {
+    const code = `<svg autoReverse="false" externalResourcesRequired="true" focusable="true" preserveAlpha="false"></svg>`
+    expect(transform(code, { plugins: [transformJsx] }).trim()).toBe(
+      '<svg autoReverse="false" externalResourcesRequired="true" focusable="true" preserveAlpha="false" />',
+    )
+  })
 })
