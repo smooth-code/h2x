@@ -14,6 +14,6 @@
   },
   "dependencies": {
     "h2x-types": "^1.1.0",
-    "jsdom": "^12.0.0"
+    "jsdom": ">=11.0.0"
   }
 }
