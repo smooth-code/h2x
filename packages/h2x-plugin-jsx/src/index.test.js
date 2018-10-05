@@ -7,6 +7,11 @@ describe('transformJsx', () => {
     <?xml version="1.0" encoding="UTF-8"?>
     <svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+        <style>
+          .test {
+            fill: red;
+          }
+        </style>
         <title>Dismiss</title>
         <desc>Created with Sketch.</desc>
         <defs>
@@ -57,11 +62,16 @@ describe('transformJsx', () => {
       .toBe(`{/*?xml version="1.0" encoding="UTF-8"?*/}
 <svg width="88px" height="88px" viewBox="0 0 88 88" version={1.1} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
   {/*Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch*/}
+  <style>
+    {\`.test {
+            fill: red;
+          }\`}
+  </style>
   <title>
-    Dismiss
+    {\`Dismiss\`}
   </title>
   <desc>
-    Created with Sketch.
+    {\`Created with Sketch.\`}
   </desc>
   <defs>
     <linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%">
@@ -89,6 +99,13 @@ describe('transformJsx', () => {
     const code = `<div id="foo" style="font-size: 10px; line-height: 1.2;"></div>`
     expect(transform(code, { plugins: [transformJsx] }).trim()).toBe(
       `<div id="foo" style={{"fontSize":10,"lineHeight":1.2}} />`,
+    )
+  })
+
+  it('should handle special SVG attributes', () => {
+    const code = `<svg autoReverse="false" externalResourcesRequired="true" focusable="true" preserveAlpha="false"></svg>`
+    expect(transform(code, { plugins: [transformJsx] }).trim()).toBe(
+      '<svg autoReverse="false" externalResourcesRequired="true" focusable="true" preserveAlpha="false" />',
     )
   })
 })

@@ -7,6 +7,8 @@ import { isNumeric, hyphenToCamelCase } from './util'
 const ATTRIBUTE_MAPPING = {
   for: 'htmlFor',
   class: 'className',
+  autoreverse: 'autoReverse',
+  externalresourcesrequired: 'externalResourcesRequired',
 }
 
 const ELEMENT_ATTRIBUTE_MAPPING = {
@@ -155,7 +157,6 @@ export default {
   HTMLElement: {
     enter(path) {
       const jsxElement = new JSXElement()
-
       jsxElement.name = transformTagName(path.node.tagName)
       jsxElement.attributes = listToArray(path.node.attributes)
       jsxElement.children = listToArray(path.node.childNodes)
