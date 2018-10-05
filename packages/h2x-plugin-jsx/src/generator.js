@@ -20,9 +20,9 @@ const formatElementOpen = jsxElement => {
 const formatElementClose = jsxElement => `</${jsxElement.name}>`
 
 const formatComment = jsxComment =>
-  `{/*${jsxComment.text.replace('*/', '* /')}*/}`
+  `{/*${jsxComment.text.replace(/\*\//g, '* /')}*/}`
 
-const formatText = jsxText => jsxText.text
+const formatText = jsxText => jsxText.text.replace(/`/g, '\\`')
 
 export default {
   JSXElement: {
@@ -44,7 +44,7 @@ export default {
   JSXText: {
     enter(path, generator) {
       const trimmedText = path.node.text.trim()
-      if (trimmedText) generator.writeLine(formatText(path.node))
+      if (trimmedText) generator.writeLine(`{\`${formatText(path.node)}\`}`)
     },
   },
 }
