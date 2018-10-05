@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/smooth-code/h2x/tree/master/packages/h2x-plugin-jsx/compare/v1.1.1...v1.2.0) (2018-10-05)
+
+
+### Features
+
+* add new JSXInterpolation node ([1e2c3c7](https://github.com/smooth-code/h2x/tree/master/packages/h2x-plugin-jsx/commit/1e2c3c7))
+
+
+
+
+
 ## [1.1.1](https://github.com/smooth-code/h2x/tree/master/packages/h2x-plugin-jsx/compare/v1.1.0...v1.1.1) (2018-10-05)
 
 
